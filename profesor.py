@@ -1,5 +1,5 @@
 from usuario import Usuario
-from curso import Curso  # Asegúrate de importar la clase Curso
+from curso import Curso
 
 class Profesor(Usuario):
     def __init__(self, nombre: str, apellido: str, email: str, contraseña: str, titulo: str, año_egreso: int) -> None:
@@ -32,13 +32,10 @@ class Profesor(Usuario):
         return super().__str__() + f" Título: {self.titulo}. Año de egreso: {self.año_egreso}"
 
     def dictar_curso(self, nombre_curso: str):
-        # Generar una contraseña de matriculación automáticamente
         contraseña_matriculacion = Curso.generar_contraseña()
 
-        # Crear un nuevo curso con el nombre y la contraseña
         nuevo_curso = Curso(nombre_curso, contraseña_matriculacion)
 
-        # Agregar el curso a la lista de cursos dictados por el profesor
         self.__mis_cursos.append(nuevo_curso)
 
         print(f"Curso {nombre_curso} dado de alta con éxito.")

@@ -44,7 +44,3 @@ class Usuario(ABC):
 
     def validar_credenciales(self, email: str, contraseña: str) -> bool:
         return email == self.email and contraseña == self.contraseña
-
-    # Agregar aquí otros métodos o atributos necesarios para el trabajo práctico.
-    # Por ejemplo, si necesitas rastrear a los alumnos o profesores, podrías incluir
-    # listas para almacenar sus datos.

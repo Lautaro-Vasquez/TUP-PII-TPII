@@ -27,36 +27,17 @@ class Estudiante(Usuario):
     def mis_cursos(self):
         return self.__mis_cursos
 
+    def matricularse(self, curso):
+        self.__mis_cursos.append(curso)
+
     def __str__(self) -> str:
         return super().__str__() + f" Legajo: {self.legajo}. Año de inscripción: {self.año_inscripcion_carrera}"
 
     def matricularse_en_curso(self, curso: object, contraseña_matriculación: str) -> str:
-        # Verificar que el curso no esté ya en la lista de mis_cursos
         if curso in self.__mis_cursos:
-            return "Ya estás matriculado en este curso."
-        
-        # Verificar que la contraseña de matriculación sea la correcta
+            return "Ya estás matriculado en este curso."        
         if contraseña_matriculación == curso.contraseña_matriculacion:
             self.__mis_cursos.append(curso)
             return f"Te has matriculado en el curso: {curso.nombre}."
         else:
             return "La contraseña de matriculación es incorrecta."
-    
-    def ver_cursos(self, cursos: list) -> None:
-        if not cursos:
-            print("No hay cursos disponibles en este momento.")
-        else:
-            cursos.sort(key=lambda curso: curso.nombre)
-            for i, curso in enumerate(cursos, start=1):
-                print(f"{i} {curso.nombre}")
-
-    def ver_curso(self, curso_elegido: int, cursos: list) -> str:
-        if curso_elegido < 1 or curso_elegido > len(cursos):
-            return "Opción de curso no válida."
-        curso = cursos[curso_elegido - 1]
-
-        # Verificar si el estudiante está matriculado en el curso
-        if curso in self.__mis_cursos:
-            return f"Nombre: {curso.nombre}\nContraseña de matriculación: {curso.contraseña_matriculacion}"
-        else:
-            return "No estás matriculado en este curso."
